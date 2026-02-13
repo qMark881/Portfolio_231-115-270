@@ -1,0 +1,4 @@
+/* Modern resets already handled by Tailwind 4 @layer base */
+#root {
+  width: 100%;
+}
