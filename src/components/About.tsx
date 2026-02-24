@@ -19,7 +19,7 @@ const About = () => {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="aspect-[4/5] rounded-[3rem] bg-stone-100 dark:bg-stone-900 overflow-hidden shadow-2xl relative">
+            <div className="aspect-[4/5] rounded-[3rem] bg-stone-100 dark:bg-black overflow-hidden shadow-2xl relative">
               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1000')] bg-cover bg-center" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-10 left-10 text-white space-y-2">
@@ -28,7 +28,7 @@ const About = () => {
               </div>
             </div>
             {/* Decoration */}
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 glass rounded-3xl flex items-center justify-center -rotate-12 border-2 shadow-2xl">
+            <div className="absolute -bottom-6 -right-6 w-32 h-32 glass-premium rounded-3xl flex items-center justify-center -rotate-12 border-2 shadow-2xl">
               <span className="text-4xl font-black text-blue-500">231</span>
             </div>
           </motion.div>
@@ -44,7 +44,7 @@ const About = () => {
 
             <div className="grid grid-cols-2 gap-8">
               {stats.map((stat, i) => (
-                <div key={i} className="space-y-3 p-6 glass rounded-2xl border">
+                <div key={i} className="space-y-3 p-6 glass-premium rounded-2xl border">
                   <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-600">
                     <stat.icon size={20} />
                   </div>

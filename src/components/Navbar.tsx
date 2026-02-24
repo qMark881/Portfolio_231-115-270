@@ -1,18 +1,34 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import { cn } from '../lib/utils';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [isDark, setIsDark] = useState(true);
 
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const direction = latest - lastScrollY;
+    
+    // Scrolled state for glass effect
+    setIsScrolled(latest > 20);
+
+    // Visibility logic: hide on scroll down, show on scroll up
+    if (latest < 50) {
+      setIsVisible(true);
+    } else if (direction > 5) {
+      setIsVisible(false);
+    } else if (direction < 0) {
+      setIsVisible(true);
+    }
+
+    setLastScrollY(latest);
+  });
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -34,18 +50,25 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={cn(
-      "fixed top-0 w-full z-50 transition-all duration-300 px-6 py-4",
-      isScrolled ? "glass border-b" : "bg-transparent"
-    )}>
+    <motion.nav 
+      initial={{ y: 0 }}
+      animate={{ y: isVisible ? 0 : -100 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      className={cn(
+        "fixed top-0 w-full z-50 px-6 py-4 transition-all duration-300 ease-in-out border-b border-transparent",
+        isScrolled && "border-b"
+      )}
+      style={{
+        backgroundColor: isScrolled ? 'var(--header-bg)' : 'transparent',
+        backdropFilter: isScrolled ? 'blur(var(--header-blur))' : 'none',
+        WebkitBackdropFilter: isScrolled ? 'blur(var(--header-blur))' : 'none',
+        borderBottomColor: isScrolled ? 'var(--header-border)' : 'transparent',
+      }}
+    >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <motion.div 
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="text-2xl font-black tracking-tighter"
-        >
-          MARK<span className="text-blue-500">.PS</span>
-        </motion.div>
+        <a href="#home" className="text-2xl md:text-3xl font-black tracking-tighter cursor-pointer hover:opacity-80 transition-opacity">
+          MARK<span className="text-[#007AFF]">.PS</span>
+        </a>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
@@ -53,14 +76,14 @@ const Navbar = () => {
             <a 
               key={link.name} 
               href={link.href}
-              className="text-sm font-semibold hover:text-blue-500 transition-colors uppercase tracking-widest"
+              className="text-sm font-semibold hover:text-blue-500 transition-colors uppercase tracking-widest text-[var(--nav-text)]"
             >
               {link.name}
             </a>
           ))}
           <button 
             onClick={() => setIsDark(!isDark)}
-            className="p-2 rounded-xl bg-secondary hover:bg-accent transition-colors border"
+            className="p-2 rounded-xl glass-premium hover:text-blue-500 transition-all duration-300 ease-in-out border"
           >
             {isDark ? <Sun size={20} /> : <Moon size={20} />}
           </button>
@@ -70,7 +93,7 @@ const Navbar = () => {
         <div className="md:hidden flex items-center gap-4">
           <button 
             onClick={() => setIsDark(!isDark)}
-            className="p-2 rounded-xl bg-secondary border"
+            className="p-2 rounded-xl glass-premium border"
           >
             {isDark ? <Sun size={20} /> : <Moon size={20} />}
           </button>
@@ -104,7 +127,7 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 };
 
