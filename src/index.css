@@ -45,24 +45,51 @@
 }
 
 /* Custom Utilities */
-.glass {
-  @apply bg-white/[0.03] dark:bg-black/[0.03] backdrop-blur-2xl border border-white/10 dark:border-white/5;
+@utility glass {
+  background-color: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  :is(.dark, [data-theme='dark']) & {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-color: rgba(255, 255, 255, 0.05);
+  }
 }
 
-.glass-premium {
-  @apply glass dark:bg-blue-500/[0.03] dark:hover:bg-blue-500/[0.06];
+@utility glass-premium {
+  @apply glass;
+  
+  :is(.dark, [data-theme='dark']) & {
+    background-color: rgba(59, 130, 246, 0.03);
+    &:hover {
+      background-color: rgba(59, 130, 246, 0.06);
+    }
+  }
 }
 
-.dark-glow {
-  @apply dark:shadow-[0_0_40px_rgba(59,130,246,0.05)];
+@utility dark-glow {
+  :is(.dark, [data-theme='dark']) & {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.05);
+  }
 }
 
-.text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400;
+@utility text-gradient {
+  background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, var(--color-blue-600), var(--color-indigo-600));
+  
+  :is(.dark, [data-theme='dark']) & {
+    background-image: linear-gradient(to right, var(--color-blue-400), var(--color-indigo-400));
+  }
 }
 
-.card-hover {
-  @apply transition-all duration-500 hover:scale-[1.01] hover:border-blue-500/30;
+@utility card-hover {
+  transition-property: all;
+  transition-duration: 500ms;
+  &:hover {
+    transform: scale(1.01);
+    border-color: rgba(59, 130, 246, 0.3);
+  }
 }
 
 .card-glow:hover {
