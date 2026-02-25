@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import "tailwindcss";
 
 
 :root {
@@ -37,11 +37,43 @@
 @layer base {
   * {
     @apply border-[var(--border)];
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
+  
+  html, body {
+    overflow-x: hidden;
+    width: 100vw;
+    -webkit-overflow-scrolling: touch;
+    touch-action: manipulation;
+  }
+
   body {
     @apply bg-[var(--background)] text-[var(--foreground)] antialiased;
     font-family: 'Inter', system-ui, sans-serif;
+    position: relative;
   }
+}
+
+/* Sovereign Fluid Foundation */
+:root {
+  --fluid-h1: clamp(3rem, 10vw, 8rem);
+  --fluid-body: clamp(1rem, 1.2vw, 1.25rem);
+  --fluid-padding: clamp(1.5rem, 5vw, 6rem);
+}
+
+@keyframes kinetic-glow {
+  0%, 100% { 
+    filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.3)) drop-shadow(0 0 30px rgba(168, 85, 247, 0.15));
+  }
+  50% { 
+    filter: drop-shadow(0 0 25px rgba(168, 85, 247, 0.35)) drop-shadow(0 0 40px rgba(0, 242, 255, 0.25));
+  }
+}
+
+.animate-kinetic-glow {
+  animation: kinetic-glow 4s ease-in-out infinite;
 }
 
 /* Custom Utilities */
@@ -209,6 +241,37 @@
 
 .dark .card-glow-active {
   box-shadow: 0 0 40px rgba(59, 130, 246, 0.1), inset 0 0 20px rgba(59, 130, 246, 0.05);
+}
+
+/* GPU Performance Nodes */
+#home, #about, #skills, #projects, #contact {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  content-visibility: auto;
+  contain-intrinsic-size: 0 1000px;
+}
+
+#home {
+  content-visibility: visible; /* Priority Node */
+}
+
+/* Modern Foldable & Device Adaptations */
+@supports (padding: env(safe-area-inset-top)) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* 120 FPS Smooth Scroll & Performance */

@@ -10,20 +10,22 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import PasswordGate from './components/PasswordGate';
 import ProjectArchive from './components/ProjectArchive';
+import Sentinel from './components/Sentinel';
 
 function App() {
   const [isArchiveOpen, setIsArchiveOpen] = useState(false);
 
-  // 120 FPS Smooth Scroll Implementation (Lenis)
+  // Ultra-HD 120 FPS "Butter-Flow" Implementation
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.5,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1,
+      wheelMultiplier: 1.0,
       touchMultiplier: 2,
+      lerp: 0.1, // Elastic responsiveness
       infinite: false,
     });
 
@@ -34,8 +36,27 @@ function App() {
 
     requestAnimationFrame(raf);
 
+    // Keyboard Smooth-Scroll Intercept
+    const handleKeyScroll = (e: KeyboardEvent) => {
+      if (['ArrowUp', 'ArrowDown', 'Space', 'PageUp', 'PageDown'].includes(e.code)) {
+        e.preventDefault();
+        const scrollAmount = 400;
+        let target = window.scrollY;
+        
+        if (e.code === 'ArrowDown' || e.code === 'Space') target += scrollAmount;
+        if (e.code === 'ArrowUp') target -= scrollAmount;
+        if (e.code === 'PageDown') target += window.innerHeight;
+        if (e.code === 'PageUp') target -= window.innerHeight;
+
+        lenis.scrollTo(target, { duration: 1 });
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyScroll, { passive: false });
+
     return () => {
       lenis.destroy();
+      window.removeEventListener('keydown', handleKeyScroll);
     };
   }, []);
 
@@ -50,9 +71,9 @@ function App() {
 
   return (
     <PasswordGate>
-      <div className="relative selection:bg-blue-500 selection:text-white bg-[var(--background)]">
+      <div className="relative selection:bg-blue-500 selection:text-white bg-[var(--background)] transition-colors duration-500 isolation-isolate">
         <Navbar />
-        <main>
+        <main className="w-full transform-gpu">
           <Hero />
           <About />
           <Skills />
@@ -60,6 +81,7 @@ function App() {
           <Contact />
         </main>
         <Footer onArchiveClick={() => setIsArchiveOpen(true)} />
+        <Sentinel />
 
         <AnimatePresence>
           {isArchiveOpen && (

@@ -207,6 +207,7 @@ const SkillCard = ({ skill, index }: { skill: Skill, index: number }) => {
         rotateX: -3,
         translateZ: 20 
       }}
+      whileTap={{ scale: 0.95 }}
       transition={{ 
         duration: 0.8, 
         delay: index * 0.08, 
@@ -218,39 +219,39 @@ const SkillCard = ({ skill, index }: { skill: Skill, index: number }) => {
         backgroundColor: 'var(--card-bg)',
         color: 'var(--card-text)'
       }}
-      className="group relative p-8 rounded-[2rem] transition-all duration-200 shadow-xl dark:shadow-none border border-transparent dark:border-white/[0.05]"
+      className="group relative p-[2vw] rounded-[2vw] transition-all duration-200 shadow-xl dark:shadow-none border border-transparent dark:border-white/[0.05] transform-gpu"
     >
-      <div className="relative z-10 flex flex-col items-start gap-8">
+      <div className="relative z-10 flex flex-col items-start gap-[2vw]">
         {/* Aura Glow Icon Housing */}
         <div className="relative w-full">
           <motion.div 
             whileHover={{ scale: 1.1 }}
-            className="relative w-16 h-16 flex items-center justify-center transition-all duration-500"
+            className="relative w-[4vw] h-[4vw] min-w-[32px] min-h-[32px] flex items-center justify-center transition-all duration-500"
           >
             <div className="absolute inset-0 bg-blue-500/20 dark:bg-[#007AFF]/10 blur-xl rounded-full group-hover:bg-[#007AFF]/30 transition-all duration-500" />
-            <skill.icon size={32} className="relative z-10 text-[var(--card-text)] group-hover:text-[#007AFF] group-hover:drop-shadow-[0_0_15px_rgba(0,122,255,1)] transition-all duration-500" />
+            <skill.icon className="relative z-10 text-[var(--card-text)] group-hover:text-[#007AFF] group-hover:drop-shadow-[0_0_15px_rgba(0,122,255,1)] transition-all duration-500" size="2vw" />
           </motion.div>
         </div>
 
-        <div className="space-y-3 w-full">
-          <h4 className="text-xl font-black tracking-tight uppercase group-hover:text-[#007AFF] transition-colors duration-500 text-[var(--card-text)]">
+        <div className="space-y-[1vw] w-full">
+          <h4 className="text-[clamp(14px,1.2vw,24px)] font-black tracking-tight uppercase group-hover:text-[#007AFF] transition-colors duration-500 text-[var(--card-text)]">
             {skill.title}
           </h4>
-          <p className="text-[10px] font-mono text-stone-500 dark:text-stone-400 font-bold tracking-[0.15em] uppercase leading-relaxed max-w-[200px]">
+          <p className="text-[clamp(8px,0.6vw,12px)] font-mono text-stone-500 dark:text-stone-400 font-bold tracking-[0.15em] uppercase leading-relaxed">
             {skill.tools}
           </p>
         </div>
 
         <div className="mt-auto w-full">
-          <div className="flex justify-between items-center mb-4 px-1 font-mono animate-data-flicker">
-            <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#007AFF] shadow-[0_0_10px_rgba(0,122,255,1)]" />
-              <span className="text-[8px] text-stone-500 dark:text-stone-400 font-bold uppercase tracking-widest font-jetbrains">PROTOCOL 2026.SYS</span>
+          <div className="flex justify-between items-center mb-[1vw] px-[0.1vw] font-mono animate-data-flicker">
+            <div className="flex items-center gap-[0.5vw]">
+              <div className="w-[0.5vw] h-[0.5vw] min-w-[4px] min-h-[4px] rounded-full bg-[#007AFF] shadow-[0_0_10px_rgba(0,122,255,1)]" />
+              <span className="text-[clamp(6px,0.5vw,10px)] text-stone-500 dark:text-stone-400 font-bold uppercase tracking-widest font-jetbrains">PROTOCOL 2026.SYS</span>
             </div>
-            <span className="text-[10px] text-[#007AFF] font-black font-jetbrains">{syncRate}%</span>
+            <span className="text-[clamp(8px,0.7vw,14px)] text-[#007AFF] font-black font-jetbrains">{syncRate}%</span>
           </div>
           
-          <div className="flex gap-1 h-5 items-end mb-4 px-1">
+          <div className="flex gap-[0.2vw] h-[2vw] min-h-[12px] items-end mb-[1vw] px-[0.1vw]">
             {barData.map((data, i) => (
               <motion.div 
                 key={i}
@@ -305,7 +306,7 @@ const Skills = () => {
     <section 
       id="skills" 
       ref={containerRef}
-      className="relative py-80 px-6 overflow-hidden bg-[var(--background)]"
+      className="relative py-[var(--fluid-padding)] px-[var(--fluid-padding)] overflow-hidden bg-[var(--background)]"
     >
       <NeuralBackground />
       
@@ -314,37 +315,36 @@ const Skills = () => {
       
       {/* Atmosphere Gradients */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] dark:bg-[#007AFF]/10 bg-blue-500/5 blur-[220px] rounded-full" />
-        <div className="absolute -top-[20%] -right-[10%] w-[800px] h-[800px] dark:bg-purple-600/10 bg-purple-500/5 blur-[200px] rounded-full" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] dark:bg-[#007AFF]/10 bg-blue-500/5 blur-[min(220px,15vw)] rounded-full" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-20">
-        <div className="flex flex-col items-center text-center gap-12 mb-64">
+        <div className="flex flex-col items-center text-center gap-[4vw] mb-[8vw]">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex flex-col items-center gap-10"
+            className="flex flex-col items-center gap-[2vw]"
           >
-            <div className="flex items-center gap-8">
-              <div className="w-20 h-[1px] bg-[#007AFF]/40" />
-              <span className="text-[12px] font-black uppercase tracking-[1em] text-[#007AFF] bg-[#007AFF]/5 px-6 py-2 rounded-full border border-[#007AFF]/20">
+            <div className="flex items-center gap-[3vw]">
+              <div className="w-[8vw] h-[1px] bg-[#007AFF]/40" />
+              <span className="text-[clamp(10px,0.8vw,14px)] font-black uppercase tracking-[1em] text-[#007AFF] bg-[#007AFF]/5 px-[2vw] py-[0.5vw] rounded-full border border-[#007AFF]/20">
                 Neural Infrastructure
               </span>
-              <div className="w-20 h-[1px] bg-[#007AFF]/40" />
+              <div className="w-[8vw] h-[1px] bg-[#007AFF]/40" />
             </div>
             
-            <h3 className="text-8xl font-black tracking-tighter leading-none uppercase md:text-[11rem] text-[var(--foreground)] relative select-none">
+            <h3 className="text-[clamp(48px,8vw,12rem)] font-black tracking-tighter leading-none uppercase text-[var(--foreground)] relative select-none">
               NEURAL <span className="text-[#007AFF] drop-shadow-[0_0_40px_rgba(0,122,255,0.4)]">LINK</span>
             </h3>
             
-            <p className="max-w-4xl text-stone-500 dark:text-zinc-500 font-mono text-[11px] uppercase tracking-[0.6em] mt-4 leading-relaxed opacity-60 font-jetbrains">
-              Initializing Type II Civilization Core // Status: Operational // 2026.02.24
+            <p className="max-w-[60vw] text-stone-500 dark:text-zinc-500 font-mono text-[clamp(8px,0.6vw,12px)] uppercase tracking-[0.6em] mt-[1vw] leading-relaxed opacity-60 font-jetbrains">
+              Initializing Type II Civilization Core // Status: Operational
             </p>
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 gap-y-16 relative z-30">
+        <div className="grid grid-cols-5 gap-[2vw] relative z-30">
           {stack.map((skill, i) => (
             <SkillCard key={i} skill={skill} index={i} />
           ))}

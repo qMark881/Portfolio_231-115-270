@@ -32,39 +32,40 @@ const PasswordGate = ({ children }: { children: React.ReactNode }) => {
       <motion.div 
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="w-full max-w-md glass border-white/10 p-12 rounded-[2.5rem] relative z-10"
+        className="w-full max-w-[35vw] min-w-[300px] glass border-white/10 p-[4vw] rounded-[2.5vw] relative z-10 transform-gpu"
       >
-        <div className="flex flex-col items-center text-center gap-6">
-          <div className="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 border border-blue-500/20">
-            <ShieldAlert size={32} />
+        <div className="flex flex-col items-center text-center gap-[2vw]">
+          <div className="w-[5vw] h-[5vw] min-w-[48px] min-h-[48px] rounded-[1vw] bg-blue-500/10 flex items-center justify-center text-blue-500 border border-blue-500/20">
+            <ShieldAlert size="2.5vw" />
           </div>
           
-          <div className="space-y-2">
-            <h2 className="text-2xl font-black tracking-tight text-white uppercase">Security Protocol</h2>
-            <p className="text-stone-500 text-sm font-medium">Access restricted to authorized personnel only. Verification required.</p>
+          <div className="space-y-[1vw]">
+            <h2 className="text-[clamp(18px,1.5vw,32px)] font-black tracking-tight text-white uppercase">Security Protocol</h2>
+            <p className="text-stone-500 text-[clamp(10px,0.8vw,14px)] font-medium">Access restricted to authorized personnel only. Verification required.</p>
           </div>
 
-          <form onSubmit={handleGrantAccess} className="w-full space-y-4">
+          <form onSubmit={handleGrantAccess} className="w-full space-y-[1.5vw]">
             <div className="relative group">
-              <div className="absolute left-6 top-1/2 -translate-y-1/2 text-stone-500">
-                <Terminal size={18} />
+              <div className="absolute left-[1.5vw] top-1/2 -translate-y-1/2 text-stone-500">
+                <Terminal size="1.2vw" />
               </div>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter Access Code"
-                className={`w-full bg-white/5 border-2 ${error ? 'border-red-500/50' : 'border-white/10'} rounded-2xl py-4 pl-14 pr-6 text-white placeholder:text-stone-600 outline-none focus:border-blue-500/50 transition-all`}
+                className={`w-full bg-white/5 border-[2px] ${error ? 'border-red-500/50' : 'border-white/10'} rounded-[1.5vw] py-[1.2vw] pl-[4vw] pr-[1.5vw] text-white placeholder:text-stone-600 outline-none focus:border-blue-500/50 transition-all font-jetbrains text-[clamp(10px,0.8vw,14px)]`}
               />
             </div>
             
-            <button 
+            <motion.button 
               type="submit"
-              className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-black uppercase tracking-widest text-xs flex items-center justify-center gap-2 transition-all active:scale-95 shadow-xl shadow-blue-500/20"
+              whileTap={{ scale: 0.95 }}
+              className="w-full py-[1.2vw] bg-blue-600 hover:bg-blue-700 text-white rounded-[1.5vw] font-black uppercase tracking-widest text-[clamp(8px,0.6vw,12px)] flex items-center justify-center gap-[1vw] transition-all shadow-xl shadow-blue-500/20"
             >
               Initialize Sync
-              <ArrowRight size={18} />
-            </button>
+              <ArrowRight size="1.2vw" />
+            </motion.button>
           </form>
 
           {error && (

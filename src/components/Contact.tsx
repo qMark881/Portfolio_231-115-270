@@ -71,94 +71,88 @@ const DataPortInput = ({ label, type = "text", placeholder }: { label: string, t
 };
 
 const Contact = () => {
-  const iconBoxClass = "w-14 h-14 rounded-full bg-white/5 dark:bg-[#000000]/95 backdrop-blur-[40px] border border-[var(--border)] flex items-center justify-center transition-all active:scale-90 text-stone-600 dark:text-stone-400 hover:text-[#007AFF] dark:hover:text-[#007AFF] hover:border-[#007AFF]/40 hover:shadow-[0_0_20px_rgba(0,122,255,0.2)]";
-
   return (
-    <section id="contact" className="py-48 px-6 bg-[var(--background)] overflow-hidden relative">
+    <section id="contact" className="py-[var(--fluid-padding)] px-[var(--fluid-padding)] bg-[var(--background)] overflow-hidden relative">
       <div className="max-w-7xl mx-auto">
-        <div className="glass-premium rounded-[4rem] p-12 md:p-24 border border-[var(--border)] overflow-hidden relative bg-[var(--card-bg)] shadow-2xl">
+        <div className="glass-premium rounded-[4vw] p-[5vw] border border-[var(--border)] overflow-hidden relative bg-[var(--card-bg)] shadow-2xl">
           {/* Atmosphere */}
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#007AFF]/10 blur-[120px] rounded-full translate-y-[-20%] translate-x-[20%] pointer-events-none" />
+          <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-[#007AFF]/10 blur-[min(120px,10vw)] rounded-full translate-y-[-20%] translate-x-[20%] pointer-events-none" />
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 relative z-10 items-center">
+          <div className="flex flex-row gap-[5vw] relative z-10 items-center">
             {/* Left Content */}
-            <div className="lg:col-span-6 space-y-12">
-              <div className="space-y-8">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-[1px] bg-[#007AFF]/60" />
-                  <h2 className="text-[11px] font-black uppercase tracking-[0.5em] text-[#007AFF] font-jetbrains animate-data-flicker">ENVOY INITIALIZATION</h2>
+            <div className="w-1/2 space-y-[4vw]">
+              <div className="space-y-[2vw]">
+                <div className="flex items-center gap-[2vw]">
+                  <div className="w-[8vw] h-[1px] bg-[#007AFF]/60" />
+                  <h2 className="text-[clamp(10px,0.7vw,14px)] font-black uppercase tracking-[0.5em] text-[#007AFF] font-jetbrains animate-data-flicker">ENVOY INITIALIZATION</h2>
                 </div>
-                <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.9] uppercase text-[var(--foreground)]">
+                <h3 className="text-[clamp(28px,4vw,64px)] font-black tracking-tighter leading-[0.9] uppercase text-[var(--foreground)]">
                   START A <br />
                   <span className="text-[#007AFF] drop-shadow-[0_0_40px_rgba(0,122,255,0.4)] block">CONVERSATION</span>
                 </h3>
-                <p className="text-stone-500 dark:text-stone-400 text-lg font-medium leading-relaxed max-w-sm">
+                <p className="text-stone-500 dark:text-stone-400 text-[clamp(1rem,1.2vw,1.3rem)] font-medium leading-relaxed max-w-[30vw]">
                   Initializing secure channel for freelance collaboration and strategic partnerships. Establish link to build the future.
                 </p>
               </div>
 
-              <div className="space-y-8">
-                <div className="flex items-center gap-8 group">
-                  <div className="relative w-16 h-16 flex items-center justify-center transition-all duration-500">
+              <div className="space-y-[3vw]">
+                <div className="flex items-center gap-[3vw] group">
+                  <div className="relative w-[5vw] h-[5vw] min-w-[40px] min-h-[40px] flex items-center justify-center transition-all duration-500">
                     <div className="absolute inset-0 bg-blue-500/10 blur-xl rounded-full group-hover:bg-[#007AFF]/30 transition-all duration-500" />
-                    <Mail size={28} className="relative z-10 text-stone-700 dark:text-stone-300 group-hover:text-[#007AFF] transition-all duration-500" />
+                    <Mail size="2vw" className="relative z-10 text-stone-700 dark:text-stone-300 group-hover:text-[#007AFF] transition-all duration-500" />
                   </div>
                   <div className="overflow-hidden">
-                    <h4 className="text-[9px] font-black uppercase tracking-[0.3em] text-stone-400 font-jetbrains">Assignment Email</h4>
-                    <p className="text-lg md:text-xl xl:text-2xl font-black tracking-tight text-[var(--foreground)] font-jetbrains truncate">markprantosarkar.dev@gmail.com</p>
+                    <h4 className="text-[clamp(8px,0.5vw,10px)] font-black uppercase tracking-[0.3em] text-stone-400 font-jetbrains">Assignment Email</h4>
+                    <p className="text-[clamp(14px,1.5vw,24px)] font-black tracking-tight text-[var(--foreground)] font-jetbrains truncate">markprantosarkar.dev@gmail.com</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-8 group">
-                  <div className="relative w-16 h-16 flex items-center justify-center transition-all duration-500">
+                <div className="flex items-center gap-[3vw] group">
+                  <div className="relative w-[5vw] h-[5vw] min-w-[40px] min-h-[40px] flex items-center justify-center transition-all duration-500">
                     <div className="absolute inset-0 bg-blue-500/10 blur-xl rounded-full group-hover:bg-[#007AFF]/30 transition-all duration-500" />
-                    <MessageSquare size={28} className="relative z-10 text-stone-700 dark:text-stone-300 group-hover:text-[#007AFF] transition-all duration-500" />
+                    <MessageSquare size="2vw" className="relative z-10 text-stone-700 dark:text-stone-300 group-hover:text-[#007AFF] transition-all duration-500" />
                   </div>
                   <div>
-                    <h4 className="text-[9px] font-black uppercase tracking-[0.3em] text-stone-400 font-jetbrains">Formal ID</h4>
-                    <p className="text-xl md:text-2xl font-black tracking-tight text-[var(--foreground)] font-jetbrains">231-115-270</p>
+                    <h4 className="text-[clamp(8px,0.5vw,10px)] font-black uppercase tracking-[0.3em] text-stone-400 font-jetbrains">Formal ID</h4>
+                    <p className="text-[clamp(14px,1.5vw,24px)] font-black tracking-tight text-[var(--foreground)] font-jetbrains">231-115-270</p>
                   </div>
                 </div>
               </div>
 
-              <div className="flex gap-6">
-                <a 
-                  href="https://github.com/qMark881" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className={iconBoxClass}
-                >
-                  <Github size={24} />
-                </a>
-                <a 
-                  href="https://www.linkedin.com/in/mark-pranto-sarkar-7111823b3/" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className={iconBoxClass}
-                >
-                  <Linkedin size={24} />
-                </a>
-                <button className={iconBoxClass}>
-                  <Twitter size={24} />
-                </button>
+              <div className="flex gap-[2vw]">
+                {[{ Icon: Github, href: "https://github.com/qMark881" }, { Icon: Linkedin, href: "https://www.linkedin.com/in/mark-pranto-sarkar-7111823b3/" }, { Icon: Twitter, href: "#" }].map((social, i) => (
+                  <motion.a 
+                    key={i}
+                    href={social.href} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    whileTap={{ scale: 0.9 }}
+                    className="w-[4vw] h-[4vw] min-w-[48px] min-h-[48px] rounded-full bg-white/5 dark:bg-[#000000]/95 backdrop-blur-[40px] border border-[var(--border)] flex items-center justify-center text-stone-600 dark:text-stone-400 hover:text-[#007AFF] hover:border-[#007AFF]/40 transition-all"
+                  >
+                    <social.Icon size="1.5vw" />
+                  </motion.a>
+                ))}
               </div>
             </div>
 
             {/* Right Form */}
-            <div className="lg:col-span-6 flex justify-center lg:justify-end">
-              <div className="w-full max-w-[540px] relative">
-                <div className="absolute inset-0 rounded-[3.5rem] p-[1px] bg-gradient-to-br from-white/20 via-white/5 to-transparent pointer-events-none" />
+            <div className="w-1/2 flex justify-end">
+              <div className="w-full max-w-[40vw] relative transform-gpu">
+                <div className="absolute inset-0 rounded-[3.5vw] p-[1px] bg-gradient-to-br from-white/20 via-white/5 to-transparent pointer-events-none" />
                 
-                <form className="space-y-10 p-12 md:p-14 bg-white/5 dark:bg-[#000000]/95 backdrop-blur-[40px] rounded-[3.5rem] shadow-none border border-[var(--border)]">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                <form className="space-y-[4vw] p-[4vw] bg-white/5 dark:bg-[#000000]/95 backdrop-blur-[40px] rounded-[3.5vw] shadow-none border border-[var(--border)]">
+                  <div className="flex flex-row gap-[2vw]">
                     <DataPortInput label="Full Name" placeholder="Mark Pranto" name="name" />
                     <DataPortInput label="Email Address" placeholder="mark@dev.net" type="email" name="email" />
                   </div>
                   <DataPortInput label="Message" placeholder="Describe your vision..." type="textarea" name="message" />
                   
-                  <button className="group w-full py-8 bg-[#007AFF] hover:bg-[#0051FF] text-white rounded-[2rem] font-black uppercase tracking-[0.4em] text-[10px] flex items-center justify-center gap-4 transition-all hover:scale-[1.02] active:scale-95 shadow-[0_0_30px_rgba(0,122,255,0.4)] hover:shadow-[0_0_50px_rgba(0,122,255,0.6)]">
+                  <motion.button 
+                    whileTap={{ scale: 0.95 }}
+                    className="group w-full py-[2vw] bg-[#007AFF] hover:bg-[#0051FF] text-white rounded-[2vw] font-black uppercase tracking-[0.4em] text-[clamp(8px,0.7vw,14px)] flex items-center justify-center gap-[1vw] shadow-[0_0_30px_rgba(0,122,255,0.4)] transition-all"
+                  >
                     DISPATCH REQUEST
-                    <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  </button>
+                    <Send className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" size="1.2vw" />
+                  </motion.button>
                 </form>
               </div>
             </div>

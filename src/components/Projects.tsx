@@ -109,31 +109,31 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-32 px-6 bg-[var(--background)]">
+    <section id="projects" className="py-[var(--fluid-padding)] px-[var(--fluid-padding)] bg-[var(--background)]">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-end gap-10 mb-24">
+        <div className="flex flex-row justify-between items-end gap-[4vw] mb-[8vw]">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="space-y-[1vw]"
           >
-            <h2 className="text-sm font-black uppercase tracking-widest text-[#007AFF]">Selected Work</h2>
-            <h3 className="text-5xl font-black tracking-tight leading-none uppercase md:text-7xl">ENGINEERED <br />SOLUTIONS</h3>
+            <h2 className="text-[clamp(10px,0.8vw,14px)] font-black uppercase tracking-widest text-[#007AFF]">Selected Work</h2>
+            <h3 className="text-[clamp(32px,5vw,72px)] font-black tracking-tight leading-none uppercase">ENGINEERED <br />SOLUTIONS</h3>
           </motion.div>
           <motion.p 
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="max-w-md text-stone-500 font-medium text-lg text-right hidden md:block uppercase tracking-wider"
+            className="max-w-[30vw] text-stone-500 font-medium text-[clamp(12px,1vw,18px)] text-right uppercase tracking-wider"
           >
             Turning complex requirements into high-performance digital reality.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-2 gap-[4vw] relative z-30">
           {cases.map((project, i) => (
             <motion.div
               key={i}
@@ -141,7 +141,8 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: i % 2 * 0.1 }}
-              className={`group relative rounded-[4rem] overflow-hidden border border-[var(--border)] bg-stone-100 dark:bg-[#050505] flex flex-col transition-all duration-500 hover:scale-[1.01] hover:border-[#007AFF]/30 ${project.featured ? 'md:col-span-2 aspect-[16/8]' : 'aspect-[4/5] md:aspect-square'}`}
+              whileTap={{ scale: 0.98 }}
+              className={`group relative rounded-[4vw] overflow-hidden border border-[var(--border)] bg-stone-100 dark:bg-[#050505] flex flex-col transition-all duration-500 hover:border-[#007AFF]/30 transform-gpu ${project.featured ? 'col-span-2 aspect-[16/8]' : 'aspect-square'}`}
             >
               <div className="absolute inset-0 bg-[#0a0a0a] animate-pulse" style={{ opacity: loadedImages[i] ? 0 : 1 }} />
               
@@ -155,39 +156,39 @@ const Projects = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               
               {/* Header Info */}
-              <div className="relative z-20 p-10 flex justify-between items-start opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#007AFF] bg-black/40 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/10">
+              <div className="relative z-20 p-[3vw] flex justify-between items-start opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <span className="text-[clamp(8px,0.6vw,12px)] font-black uppercase tracking-[0.4em] text-[#007AFF] bg-black/40 backdrop-blur-md px-[1.5vw] py-[0.5vw] rounded-full border border-white/10">
                   {project.category}
                 </span>
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40 font-jetbrains">
+                <span className="text-[clamp(8px,0.6vw,12px)] font-black uppercase tracking-[0.4em] text-white/40 font-jetbrains">
                   PRO_ID//{i + 231}
                 </span>
               </div>
 
               {/* Footer Info */}
-              <div className="mt-auto relative z-20 p-12 flex flex-col gap-6 translate-y-8 group-hover:translate-y-0 transition-transform duration-700">
-                <div className="flex flex-wrap gap-2">
+              <div className="mt-auto relative z-20 p-[4vw] flex flex-col gap-[2vw] translate-y-8 group-hover:translate-y-0 transition-transform duration-700">
+                <div className="flex flex-wrap gap-[1vw]">
                   {project.tags.map(tag => (
-                    <span key={tag} className="px-5 py-2 glass-premium text-[10px] font-black uppercase tracking-widest rounded-full text-white/90 border border-white/10">
+                    <span key={tag} className="px-[2vw] py-[1vw] glass-premium text-[clamp(6px,0.5vw,10px)] font-black uppercase tracking-widest rounded-full text-white/90 border border-white/10">
                       {tag}
                     </span>
                   ))}
                 </div>
                 <div>
-                  <h4 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white group-hover:text-[#007AFF] transition-colors duration-500">
+                  <h4 className="text-[clamp(24px,3vw,56px)] font-black uppercase tracking-tighter text-white group-hover:text-[#007AFF] transition-colors duration-500">
                     {project.title}
                   </h4>
-                  <p className="text-white/50 font-medium max-w-xl mt-4 uppercase text-xs tracking-wider line-clamp-2 leading-relaxed font-jetbrains">
+                  <p className="text-white/50 font-medium max-w-[60vw] mt-[1vw] uppercase text-[clamp(8px,0.6vw,12px)] tracking-wider line-clamp-2 leading-relaxed font-jetbrains">
                     {project.desc}
                   </p>
                 </div>
-                <div className="flex gap-4 mt-4">
+                <div className="flex gap-[1.5vw] mt-[1vw]">
                   <motion.button 
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    className="p-4 rounded-full bg-[#007AFF] text-white shadow-xl shadow-blue-500/20 transition-all"
+                    className="p-[1.5vw] min-p-[12px] rounded-full bg-[#007AFF] text-white shadow-xl shadow-blue-500/20 transition-all"
                   >
-                    <ArrowUpRight size={24} />
+                    <ArrowUpRight size="2vw" />
                   </motion.button>
                   <motion.a 
                     whileHover={{ scale: 1.1 }}
@@ -195,9 +196,9 @@ const Projects = () => {
                     href="https://github.com/qMark881" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="p-4 rounded-full glass-premium text-white border border-white/10"
+                    className="p-[1.5vw] min-p-[12px] rounded-full glass-premium text-white border border-white/10"
                   >
-                    <Github size={24} />
+                    <Github size="2vw" />
                   </motion.a>
                 </div>
               </div>

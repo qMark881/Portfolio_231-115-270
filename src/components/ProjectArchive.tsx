@@ -22,28 +22,28 @@ const ProjectArchive = ({ onBack }: { onBack: () => void }) => {
     >
       {/* Search & Header Navigation */}
       <div className="max-w-7xl mx-auto px-6 py-20">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-20">
-          <div className="space-y-4">
+        <div className="flex flex-row items-center justify-between gap-[4vw] mb-[8vw]">
+          <div className="space-y-[1vw]">
             <button 
               onClick={onBack}
-              className="group flex items-center gap-2 text-stone-500 hover:text-[#007AFF] transition-colors text-xs font-black uppercase tracking-[0.3em]"
+              className="group flex items-center gap-[1vw] text-stone-500 hover:text-[#007AFF] transition-colors text-[clamp(8px,0.5vw,10px)] font-black uppercase tracking-[0.3em]"
             >
-              <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+              <ArrowLeft size="1vw" className="group-hover:-translate-x-1 transition-transform" />
               Return to Interface
             </button>
-            <h1 className="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-none">
+            <h1 className="text-[clamp(32px,5vw,72px)] font-black tracking-tighter uppercase leading-none">
               PROJECT <span className="text-[#007AFF] drop-shadow-[0_0_30px_rgba(0,122,255,0.3)]">ARCHIVE</span>
             </h1>
           </div>
 
-          <div className="relative w-full max-w-md">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-600" size={18} />
+          <div className="relative w-[30vw] min-w-[150px]">
+            <Search className="absolute left-[1.5vw] top-1/2 -translate-y-1/2 text-stone-600" size="1.2vw" />
             <input 
               type="text" 
-              placeholder="Filter by title or technology..." 
+              placeholder="Filter by title..." 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-6 outline-none focus:border-[#007AFF]/50 focus:bg-white/10 transition-all font-jetbrains text-sm placeholder:text-stone-600"
+              className="w-full bg-white/5 border border-white/10 rounded-[1.5vw] py-[1vw] pl-[4vw] pr-[2vw] outline-none focus:border-[#007AFF]/50 focus:bg-white/10 transition-all font-jetbrains text-[clamp(8px,0.6vw,12px)] placeholder:text-stone-600"
             />
           </div>
         </div>
